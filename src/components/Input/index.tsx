@@ -1,34 +1,45 @@
-import {Input as InputNativeBase, IInputProps, FormControl} from 'native-base';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 
-type Props = IInputProps & {
-  errorMessage?: string | null;
-}
-export function Input({ errorMessage = null, isInvalid, ...rest}: Props) {
-  const invalid = !!errorMessage || isInvalid;
+import {Controller} from 'react-hook-form';
+import {PropsInput} from './interface';
+import { TextInput } from './styles';
 
-  return(
-    <FormControl>
-      <InputNativeBase
-      fontSize="md"
-      h={16}
-      bg="gray.200"
-      isInvalid={invalid}
-      placeholderTextColor="gray.500"
-      _focus={{
-        bg: "gray.400",
-        borderWidth: 2,
-        borderColor: "green.500"
-      }}
-      _invalid={{
-        borderWidth: 2,
-        borderColor: "red.500"
-      }}
-      {...rest}
+export default function Input({
+  name,
+  control,
+  rules,
+  placeholder,
+  error,
+  secureTextEntry
+}: PropsInput) {
+  const style = StyleSheet.create({
+    content: {
+      width: '100%',
+      height: 60,
+      marginTop: 20,
+      borderWidth: 1,
+      borderColor: error ? '#c81717' : '#c7c7c7',
+      borderRadius: 12,
+    }
+  });
+
+  return (
+    <View style={style.content}>
+      <Controller
+        name={name}
+        control={control}
+        rules={rules || {}}
+        render={({field}) => (
+          <TextInput
+            value={field.value}
+            error={Boolean(error)}
+            placeholder={placeholder}
+            onChangeText={field.onChange}
+            secureTextEntry={secureTextEntry}
+          />
+        )}
       />
-
-      <FormControl.ErrorMessage>
-        {errorMessage}
-      </FormControl.ErrorMessage>
-    </FormControl>
-  )
+    </View>
+  );
 }
