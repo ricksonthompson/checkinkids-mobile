@@ -1,9 +1,8 @@
-import {Center, NativeBaseProvider, VStack} from 'native-base';
 import {useEffect, useState} from 'react';
 import {FieldValues, useForm} from 'react-hook-form';
 import {
   ActivityIndicator,
-  ScrollView,
+  Image,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
@@ -13,10 +12,25 @@ import {useAuth} from '../../hooks/auth';
 import {ChildrenDTO} from '../../interfaces/children/children.interface';
 import {getAllChildrens} from '../../services/childrens/children.service';
 import {logger} from '../../utils/logger.service';
-import {Children, Container, ListChildrens, Text, Title} from './styles';
+import {
+  Children,
+  Container,
+  InfoChildren,
+  ListChildrens,
+  Text,
+  Title,
+  Button,
+  ProfileAndInfo,
+} from './styles';
+import AvatarIcon from '../../assets/avatar.png';
+import {calculateAge} from '../../utils/date.service';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import {CultsScreenNavigationProp} from '../../interfaces/navigation/types';
 
 export const SelectChildrenScreen = () => {
   const context = useAuth();
+  const navigation = useNavigation<CultsScreenNavigationProp>();
   const {
     control,
     handleSubmit,
@@ -47,10 +61,6 @@ export const SelectChildrenScreen = () => {
     litsAllChildrens();
   }, []);
 
-  // useEffect(() => {
-  //   watch((value, { name, type }) => console.log(value, name, type));
-  // }, []);
-
   return (
     <>
       <Header />
@@ -77,15 +87,28 @@ export const SelectChildrenScreen = () => {
           ) : childrenListed?.length ? (
             childrens.map(children => (
               <Children key={children.id}>
-                <Text>{children.name}</Text>
-                <Text>{`${children.birthDate}`}</Text>
+                <Image source={AvatarIcon} style={{height: 60, width: 60}} />
+                <InfoChildren>
+                  <Text>{children.name}</Text>
+                  <Text>{`${calculateAge(children.birthDate)}`}</Text>
+                </InfoChildren>
               </Children>
             ))
           ) : childrens?.length ? (
             childrens.map(children => (
               <Children key={children.id}>
-                <Text>{children.name}</Text>
-                <Text>{`${children.birthDate}`}</Text>
+                <ProfileAndInfo>
+                  <Image source={AvatarIcon} style={{height: 60, width: 60}} />
+                  <InfoChildren>
+                    <Text>{children.name}</Text>
+                    <Text>{`${calculateAge(children.birthDate)}`}</Text>
+                  </InfoChildren>
+                </ProfileAndInfo>
+                <Button onPress={() => navigation.navigate('Check', {
+                  children
+                })}>
+                  <Icon name="arrow-forward-circle" size={55} color="#63C280" />
+                </Button>
               </Children>
             ))
           ) : (

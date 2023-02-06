@@ -6,6 +6,7 @@ import {Cults} from '../../screens/Cults';
 import Login from '../../screens/Login';
 import { SelectChildrenScreen } from '../../screens/SelectChildren';
 import { useAuth } from '../../hooks/auth';
+import { CheckScreen } from '../../screens/Check';
 
 const {Navigator, Screen} = createNativeStackNavigator<propsNavigationStack>();
 
@@ -18,6 +19,7 @@ export default function () {
       <Screen name="Cults" component={Cults} />
       <Screen name="Login" component={Login} />
       <Screen name="SelectChildren" component={SelectChildrenScreen} />
+      <Screen name="Check" component={CheckScreen} />
     </Navigator>
   );
 }
