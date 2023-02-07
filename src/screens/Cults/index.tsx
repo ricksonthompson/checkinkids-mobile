@@ -11,6 +11,7 @@ import {IUser} from '../../interfaces/user/user.interface';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import {CultsScreenNavigationProp} from '../../interfaces/navigation/types';
 import { IAlert } from '../../interfaces/alert/alert.interface';
+import { Footer } from '../../components/Footer';
 
 export const Cults = () => {
   const context = useAuth();
@@ -61,6 +62,7 @@ export const Cults = () => {
           cults.map(cult => (
             <Cult
               key={cult.id}
+              id={cult.id}
               date={cult.date}
               shift={cult.shift}
               status={cult.status}
@@ -74,6 +76,7 @@ export const Cults = () => {
           </>
         )}
       </Container>
+      <Footer />
     </>
   );
 };

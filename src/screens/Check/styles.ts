@@ -1,9 +1,13 @@
 import styled from 'styled-components/native';
 
+type PropsText =  {
+  fontStyle: string;
+};
+
 export const Container = styled.View`
   flex: 1;
-  padding: 10px;
-  background-color: #ffffff;
+  padding: 20px;
+  background-color: #F7F9FA;
 `;
 
 export const Title = styled.Text`
@@ -34,12 +38,10 @@ export const ListChildrens = styled.ScrollView`
   margin-top: 10px;
 `;
 
-export const Text = styled.Text`
+export const Text = styled.Text<PropsText>`
   font-size: 16px;
   color: #4b5c6b;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  font-family: 'DINNextW1G-Bold';
+  font-family: ${p => (p.fontStyle === 'Bold' ? 'DINNextW1G-Bold' : 'DINNextW1G-Regular')};
 `;
 
 export const InfoChildren = styled.View`
@@ -56,8 +58,32 @@ export const ProfileAndInfo = styled.View`
 
 export const Button = styled.TouchableOpacity`
     height: 60px;
+    width: 30%;
     align-items: center;
-    justify-content: space-between;
-    background-color: '#F9E435';
+    justify-content: center;
+    background-color: '#63C280';
     border-radius: 12px;
+`;
+
+export const Responsibles = styled.View`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  border-radius: 12px;
+`;
+
+export const Footer = styled.View`
+  display: flex;
+  padding: 10px;
+  background-color: #FFFFFF;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: center;
+  height: 100px;
 `;

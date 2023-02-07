@@ -29,9 +29,8 @@ import {getDayAndMonth, getWeekDay} from '../../utils/date.service';
 import StatusFinishedIcon from '../../assets/status-finished.png';
 import StatusInProgressIcon from '../../assets/status-in-running.png';
 import StatusPendingIcon from '../../assets/status-pending.png';
-import { NavigatorScreenParams, useNavigation } from '@react-navigation/native';
-import { propsNavigationStack, SelectChildrenScreenNavigationProp } from '../../interfaces/navigation/types';
-
+import {useNavigation} from '@react-navigation/native';
+import {SelectScreenNavigationProp} from '../../interfaces/navigation/types';
 
 interface ICultProps {
   quantityChildrens: number;
@@ -39,6 +38,7 @@ interface ICultProps {
   time: string;
   status: EStatusCult;
   shift: EShiftCult;
+  id: string;
 }
 
 export const Cult = ({
@@ -47,13 +47,14 @@ export const Cult = ({
   status,
   time,
   quantityChildrens,
+  id,
 }: ICultProps) => {
-  const navigation = useNavigation<SelectChildrenScreenNavigationProp>()
-  
+  const navigation = useNavigation<SelectScreenNavigationProp>();
+
   return (
     <Container
-    style={{
-      shadowColor: '#2e2d2d',
+      style={{
+        shadowColor: '#2e2d2d',
         shadowOffset: {
           width: 0,
           height: 4,
@@ -130,7 +131,7 @@ export const Cult = ({
           <CheckinButton
             onPress={() =>
               navigation.navigate('SelectChildren', {
-                name: 'Test'
+                cultId: id,
               })
             }>
             <CheckinText>Check-In</CheckinText>

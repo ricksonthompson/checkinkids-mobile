@@ -9,6 +9,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   padding: 5px;
+  background-color: #F6F8F9;
 `;
 
 export const Icon = styled.Image`

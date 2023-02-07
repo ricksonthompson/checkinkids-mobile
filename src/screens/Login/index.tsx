@@ -17,14 +17,14 @@ import {StackActions, useNavigation} from '@react-navigation/native';
 import {CultsScreenNavigationProp} from '../../interfaces/navigation/types';
 import {Footer} from '../../components/Footer';
 import CheckInKidsLogo from '../../assets/checkin-kids-logo.png';
-import { EUserType } from '../../utils/ETypes';
-import { useAuth } from '../../hooks/auth';
-import { IAlert } from '../../interfaces/alert/alert.interface';
-import { IUser } from '../../interfaces/user/user.interface';
+import {EUserType} from '../../utils/ETypes';
+import {useAuth} from '../../hooks/auth';
+import {IAlert} from '../../interfaces/alert/alert.interface';
+import {IUser} from '../../interfaces/user/user.interface';
 
 export default function Login() {
   const context = useAuth();
-  
+
   const [isLoading, setLoading] = useState<boolean>(false);
   const [userLogged, setUserLogged] = useState<IUser | null>(context.user);
 
@@ -37,9 +37,12 @@ export default function Login() {
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
-      {text: `${props.confirmMessage}`, onPress: () => console.log('OK Pressed')},
+      {
+        text: `${props.confirmMessage}`,
+        onPress: () => console.log('OK Pressed'),
+      },
     ]);
-  }
+  };
 
   const {
     control,
@@ -60,7 +63,7 @@ export default function Login() {
       });
 
       setLoading(false);
-      
+
       context.SetUserLogged({
         id: response.id,
         name: response.name,
@@ -69,23 +72,23 @@ export default function Login() {
         phone: response.phone,
         token: response.token,
         type: response.type,
-      })
+      });
 
       logger.info(response);
 
       navigation.dispatch(StackActions.replace('Cults'));
-      
     } catch (error: any) {
       setLoading(false);
 
       handleAlert({
         title: 'Falha na autenticação',
-        message: error?.message === 'Network Error' 
-        ? 'O servidor está indisponível!'
-        : error?.response?.data?.message,
+        message:
+          error?.message === 'Network Error'
+            ? 'O servidor está indisponível!'
+            : error?.response?.data?.message,
         closeMessage: 'Fechar',
-        confirmMessage: 'OK'
-      })
+        confirmMessage: 'OK',
+      });
 
       logger.error(error);
     }

@@ -1,6 +1,6 @@
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { ChildrenDTO } from '../children/children.interface';
+import {ChildrenDTO} from '../children/children.interface';
 
 export type propsNavigationStack = {
   Children: undefined;
@@ -8,9 +8,10 @@ export type propsNavigationStack = {
   Login: undefined;
   Check: {
     children: ChildrenDTO;
+    cultId: string;
   };
   SelectChildren: {
-    name: string;
+    cultId: string;
   };
 };
 
@@ -24,6 +25,11 @@ export type CheckScreenNavigationProp = RouteProp<
 export type CultsScreenNavigationProp = NativeStackNavigationProp<
   propsNavigationStack,
   'Cults'
+>;
+
+export type SelectScreenNavigationProp = NativeStackNavigationProp<
+  propsNavigationStack,
+  'SelectChildren'
 >;
 
 export type SelectChildrenScreenRouteProp = RouteProp<

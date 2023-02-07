@@ -25,12 +25,14 @@ import {
 import AvatarIcon from '../../assets/avatar.png';
 import {calculateAge} from '../../utils/date.service';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
-import {CultsScreenNavigationProp} from '../../interfaces/navigation/types';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {CultsScreenNavigationProp, SelectChildrenScreenRouteProp} from '../../interfaces/navigation/types';
 
 export const SelectChildrenScreen = () => {
   const context = useAuth();
+  const {cultId} = useRoute<SelectChildrenScreenRouteProp>().params;
   const navigation = useNavigation<CultsScreenNavigationProp>();
+
   const {
     control,
     handleSubmit,
@@ -105,7 +107,8 @@ export const SelectChildrenScreen = () => {
                   </InfoChildren>
                 </ProfileAndInfo>
                 <Button onPress={() => navigation.navigate('Check', {
-                  children
+                  children,
+                  cultId
                 })}>
                   <Icon name="arrow-forward-circle" size={55} color="#63C280" />
                 </Button>

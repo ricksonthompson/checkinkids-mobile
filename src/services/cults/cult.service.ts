@@ -24,7 +24,7 @@ export const registerPoints = (
 ): Promise<RegisterPointsResponse> => {
   return new Promise((resolve, reject) => {
     api
-      .post<RegisterPointsResponse>(
+      .put<RegisterPointsResponse>(
         `/api/cults/${cultId}/childrens/${childrenId}`,
         payload,
         {
@@ -34,6 +34,9 @@ export const registerPoints = (
         },
       )
       .then(response => resolve(response.data))
-      .catch((error: any) => reject(error));
+      .catch((error: any) => {
+        console.log(error);
+        
+        return reject(error)});
   });
 };
