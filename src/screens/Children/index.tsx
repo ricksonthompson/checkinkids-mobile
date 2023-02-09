@@ -1,10 +1,10 @@
 import React from 'react';
-import { Header } from '../../components/Header';
+import { Title } from './styles';
 
 export const Children = () => {
   return (
     <>
-    <Header />
+    <Title>Crianças</Title>
     </>
   );
 };

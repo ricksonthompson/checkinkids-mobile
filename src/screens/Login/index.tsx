@@ -26,9 +26,6 @@ export default function Login() {
   const context = useAuth();
 
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [userLogged, setUserLogged] = useState<IUser | null>(context.user);
-
-  const navigation = useNavigation<CultsScreenNavigationProp>();
 
   const handleAlert = (props: IAlert) => {
     Alert.alert(`${props.title}`, `${props.message}`, [
@@ -76,7 +73,7 @@ export default function Login() {
 
       logger.info(response);
 
-      navigation.dispatch(StackActions.replace('Cults'));
+      // navigation.dispatch(StackActions.replace('Cults'));
     } catch (error: any) {
       setLoading(false);
 

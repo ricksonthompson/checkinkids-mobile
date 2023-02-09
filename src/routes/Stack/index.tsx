@@ -1,25 +1,54 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {propsNavigationStack} from '../../interfaces/navigation/types';
+import {
+  propsNavigationDrawer,
+  propsNavigationStack,
+} from '../../interfaces/navigation/types';
 import {Children} from '../../screens/Children';
 import {Cults} from '../../screens/Cults';
-import Login from '../../screens/Login';
-import { SelectChildrenScreen } from '../../screens/SelectChildren';
-import { useAuth } from '../../hooks/auth';
-import { CheckScreen } from '../../screens/Check';
+import {SelectChildrenScreen} from '../../screens/SelectChildren';
+import {CheckScreen} from '../../screens/Check';
 
 const {Navigator, Screen} = createNativeStackNavigator<propsNavigationStack>();
 
 export default function () {
-  const context = useAuth();
 
   return (
-    <Navigator initialRouteName={context.signed ? "Cults" : "Login"} screenOptions={{headerShown: false}}>
-      <Screen name="Children" component={Children} />
-      <Screen name="Cults" component={Cults} />
-      <Screen name="Login" component={Login} />
-      <Screen name="SelectChildren" component={SelectChildrenScreen} />
-      <Screen name="Check" component={CheckScreen} />
+    <Navigator initialRouteName={'Cults'}>
+      <Screen
+        name="Children"
+        component={Children}
+        options={{title: 'Crianças'}}
+      />
+      <Screen
+        name="Cults"
+        component={Cults}
+        options={{
+          title: 'Cultos',
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="SelectChildren"
+        component={SelectChildrenScreen}
+        options={{
+          headerTitle: 'Adicionar crianças',
+          headerTitleStyle: {
+            fontFamily: 'DINNextW1G-Bold',
+          },
+          headerShown: true,
+        }}
+      />
+      <Screen
+        name="Check"
+        component={CheckScreen}
+        options={{
+          headerTitle: 'Checar informações',
+          headerTitleStyle: {
+            fontFamily: 'DINNextW1G-Bold',
+          },
+        }}
+      />
     </Navigator>
   );
 }

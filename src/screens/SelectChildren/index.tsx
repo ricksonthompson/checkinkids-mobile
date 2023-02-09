@@ -65,7 +65,6 @@ export const SelectChildrenScreen = () => {
 
   return (
     <>
-      <Header />
       <Container>
         <Title>Adicionar criança:</Title>
         <Input

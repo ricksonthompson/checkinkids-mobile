@@ -93,7 +93,6 @@ export const CheckScreen = () => {
 
   return (
     <>
-      <Header />
       <Container>
         <ProfileAndInfo>
           <Image source={AvatarIcon} style={{height: 80, width: 80}} />

@@ -54,7 +54,7 @@ export const Cult = ({
   return (
     <Container
       style={{
-        shadowColor: '#2e2d2d',
+        shadowColor: '#a4a1a1',
         shadowOffset: {
           width: 0,
           height: 4,
@@ -65,18 +65,11 @@ export const Cult = ({
       }}>
       <HeaderCard>
         <DateCult>
-          <DateCultText>
-            {getWeekDay(date).toUpperCase()}
-            {getDayAndMonth(date).toUpperCase()}
-          </DateCultText>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              fontSize: 20,
-              fontFamily: 'DINNextW1G-Regular',
-            }}>
-            {time}
-          </Text>
+          <View>
+            <Text fontStyle='Bold' style={{ fontSize: 20}}>{getWeekDay(date).toUpperCase()}</Text>
+            <Text fontStyle='Regular' style={{ fontSize: 20}}>{getDayAndMonth(date).toUpperCase()}</Text>
+          </View>
+          <Text fontStyle="Bold" style={{ fontSize: 30}}>{time}</Text>
         </DateCult>
         <StatusCult>
           <Image

@@ -1,5 +1,9 @@
 import styled from 'styled-components/native';
 
+type PropsText =  {
+  fontStyle: string;
+};
+
 export const Container = styled.View`
   background-color: #ffffff;
   border-radius: 5px;
@@ -97,10 +101,10 @@ export const CardActions = styled.View`
   margin-bottom: 10px;
 `;
 
-export const Text = styled.Text`
-  color: #4b5c6b;
-  font-weight: 400;
+export const Text = styled.Text<PropsText>`
   font-size: 16px;
+  color: #4b5c6b;
+  font-family: ${p => (p.fontStyle === 'Bold' ? 'DINNextW1G-Bold' : 'DINNextW1G-Regular')};
 `;
 
 export const DateCult = styled.View`

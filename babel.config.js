@@ -2,7 +2,7 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
     [
-      "module:react-native-dotenv",
+      'module:react-native-dotenv',
       {
         moduleName: '@env',
         path: '.env',
@@ -11,6 +11,7 @@ module.exports = {
         safe: false,
         allowUndefined: true,
       },
+    ],
+    'react-native-reanimated/plugin',
   ],
-  ]
 };

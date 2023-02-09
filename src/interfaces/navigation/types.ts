@@ -5,7 +5,6 @@ import {ChildrenDTO} from '../children/children.interface';
 export type propsNavigationStack = {
   Children: undefined;
   Cults: undefined;
-  Login: undefined;
   Check: {
     children: ChildrenDTO;
     cultId: string;
@@ -13,6 +12,11 @@ export type propsNavigationStack = {
   SelectChildren: {
     cultId: string;
   };
+};
+
+export type propsNavigationDrawer = {
+  Children: undefined;
+  CultsStack: undefined;
 };
 
 export type propsStack = NativeStackNavigationProp<propsNavigationStack>;
