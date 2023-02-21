@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -13,14 +13,10 @@ import Input from '../../components/Input';
 import {Container, Text} from './styles';
 import {signInRequest} from '../../services/user/user.service';
 import {logger} from '../../utils/logger.service';
-import {StackActions, useNavigation} from '@react-navigation/native';
-import {CultsScreenNavigationProp} from '../../interfaces/navigation/types';
 import {Footer} from '../../components/Footer';
 import CheckInKidsLogo from '../../assets/checkin-kids-logo.png';
-import {EUserType} from '../../utils/ETypes';
 import {useAuth} from '../../hooks/auth';
 import {IAlert} from '../../interfaces/alert/alert.interface';
-import {IUser} from '../../interfaces/user/user.interface';
 
 export default function Login() {
   const context = useAuth();
@@ -45,7 +41,6 @@ export default function Login() {
     control,
     handleSubmit,
     formState: {errors},
-    watch,
   } = useForm();
 
   const SignIn = async (data: FieldValues) => {
@@ -73,7 +68,6 @@ export default function Login() {
 
       logger.info(response);
 
-      // navigation.dispatch(StackActions.replace('Cults'));
     } catch (error: any) {
       setLoading(false);
 

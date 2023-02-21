@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   padding: 10px;
-  background-color: #F6F8F9;
+  background-color: #f6f8f9;
 `;
 
 export const Title = styled.Text`
@@ -17,7 +17,7 @@ export const Title = styled.Text`
 export const Children = styled.View`
   display: flex;
   padding: 10px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin-bottom: 10px;
   margin-top: 10px;
   flex-direction: row;
@@ -35,7 +35,7 @@ export const ListChildrens = styled.ScrollView`
 `;
 
 export const Text = styled.Text`
-  font-size: 16px;
+  font-size: 18px;
   color: #4b5c6b;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -55,9 +55,9 @@ export const ProfileAndInfo = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-    height: 60px;
-    align-items: center;
-    justify-content: space-between;
-    background-color: '#F9E435';
-    border-radius: 12px;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: '#F9E435';
+  border-radius: 12px;
 `;

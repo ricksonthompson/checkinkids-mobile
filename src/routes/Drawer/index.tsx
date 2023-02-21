@@ -1,19 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {propsNavigationDrawer} from '../../interfaces/navigation/types';
-import {Children} from '../../screens/Children';
+import {ChildrensScreen} from '../../screens/Childrens';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Stack from '../Stack';
 import {logger} from '../../utils/logger.service';
-import { Header } from '../../components/Header';
+import {Header} from '../../components/Header';
+import {useAuth} from '../../hooks/auth';
+import Login from '../../screens/Login';
 
 const {Navigator, Screen} = createDrawerNavigator<propsNavigationDrawer>();
 
 export default function () {
+  const {user} = useAuth();
+
   const [currentRoute, setCurrentRoute] = useState<string>();
 
   return (
     <Navigator
-      initialRouteName={'CultsStack'}
       screenOptions={{
         drawerStyle: {
           justifyContent: 'center',
@@ -23,7 +26,7 @@ export default function () {
           backgroundColor: '#F9E435',
           height: 75,
         },
-        header: () => (<Header />),
+        header: () => <Header />,
         headerShown:
           currentRoute === 'Check' || currentRoute === 'SelectChildren'
             ? false
@@ -49,28 +52,40 @@ export default function () {
           });
         },
       }}>
-      <Screen
-        name="Children"
-        component={Children}
-        options={{
-          title: 'Crianças',
-          headerTitle: 'Checkin Kids',
-          headerTitleStyle: {
-            fontFamily: 'DINNextW1G-Bold',
-          },
-        }}
-      />
-      <Screen
-        name="CultsStack"
-        component={Stack}
-        options={{
-          title: 'Cultos',
-          headerTitle: 'Checkin Kids',
-          headerTitleStyle: {
-            fontFamily: 'DINNextW1G-Bold',
-          },
-        }}
-      />
+      {user?.token == null ? (
+        <Screen
+          name="Login"
+          component={Login}
+          options={{
+            headerShown: false,
+          }}
+        />
+      ) : (
+        <>
+          <Screen
+            name="CultsStack"
+            component={Stack}
+            options={{
+              title: 'Cultos',
+              headerTitle: 'Checkin Kids',
+              headerTitleStyle: {
+                fontFamily: 'DINNextW1G-Bold',
+              },
+            }}
+          />
+          <Screen
+            name="Childrens"
+            component={ChildrensScreen}
+            options={{
+              title: 'Crianças',
+              headerTitle: 'Checkin Kids',
+              headerTitleStyle: {
+                fontFamily: 'DINNextW1G-Bold',
+              },
+            }}
+          />
+        </>
+      )}
     </Navigator>
   );
 }

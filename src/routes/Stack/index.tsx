@@ -4,10 +4,10 @@ import {
   propsNavigationDrawer,
   propsNavigationStack,
 } from '../../interfaces/navigation/types';
-import {Children} from '../../screens/Children';
+import {ChildrensScreen} from '../../screens/Childrens';
 import {Cults} from '../../screens/Cults';
-import {SelectChildrenScreen} from '../../screens/SelectChildren';
-import {CheckScreen} from '../../screens/Check';
+import {SelectChildrenScreen} from '../../screens/Cults/SelectChildren';
+import {CheckScreen} from '../../screens/Cults/Check';
 
 const {Navigator, Screen} = createNativeStackNavigator<propsNavigationStack>();
 
@@ -16,8 +16,8 @@ export default function () {
   return (
     <Navigator initialRouteName={'Cults'}>
       <Screen
-        name="Children"
-        component={Children}
+        name="Childrens"
+        component={ChildrensScreen}
         options={{title: 'Crianças'}}
       />
       <Screen

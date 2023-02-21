@@ -6,11 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {Header} from '../../components/Header';
 import Input from '../../components/Input';
 import {useAuth} from '../../hooks/auth';
 import {ChildrenDTO} from '../../interfaces/children/children.interface';
-import {getAllChildrens} from '../../services/childrens/children.service';
+import {getAll} from '../../services/childrens/children.service';
 import {logger} from '../../utils/logger.service';
 import {
   Children,
@@ -21,17 +20,15 @@ import {
   Title,
   Button,
   ProfileAndInfo,
+  IconNative,
 } from './styles';
 import AvatarIcon from '../../assets/avatar.png';
+import InfoIcon from '../../assets/info.png';
 import {calculateAge} from '../../utils/date.service';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {CultsScreenNavigationProp, SelectChildrenScreenRouteProp} from '../../interfaces/navigation/types';
 
-export const SelectChildrenScreen = () => {
+export const ChildrensScreen = () => {
   const context = useAuth();
-  const {cultId} = useRoute<SelectChildrenScreenRouteProp>().params;
-  const navigation = useNavigation<CultsScreenNavigationProp>();
 
   const {
     control,
@@ -48,7 +45,7 @@ export const SelectChildrenScreen = () => {
     try {
       setLoading(true);
 
-      const response = await getAllChildrens(context.user!.token, data);
+      const response = await getAll(context.user!.token, data);
 
       setChildren(response.items);
       setLoading(false);
@@ -66,7 +63,7 @@ export const SelectChildrenScreen = () => {
   return (
     <>
       <Container>
-        <Title>Adicionar criança:</Title>
+        <Title>Crianças</Title>
         <Input
           name="name"
           control={control}
@@ -82,6 +79,7 @@ export const SelectChildrenScreen = () => {
           onPress={handleSubmit(litsAllChildrens)}>
           <Text>Pesquisar</Text>
         </TouchableOpacity>
+
         <ListChildrens>
           {isLoading ? (
             <ActivityIndicator size="large" color="#F64427" />
@@ -105,11 +103,8 @@ export const SelectChildrenScreen = () => {
                     <Text>{`${calculateAge(children.birthDate)}`}</Text>
                   </InfoChildren>
                 </ProfileAndInfo>
-                <Button onPress={() => navigation.navigate('Check', {
-                  children,
-                  cultId
-                })}>
-                  <Icon name="arrow-forward-circle" size={55} color="#63C280" />
+                <Button>
+                  <IconNative source={InfoIcon} />
                 </Button>
               </Children>
             ))

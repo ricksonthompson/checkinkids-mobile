@@ -6,9 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {Header} from '../../components/Header';
-import {CheckScreenNavigationProp, CultsScreenNavigationProp} from '../../interfaces/navigation/types';
-import {calculateAge} from '../../utils/date.service';
 import {
   Button,
   Container,
@@ -19,14 +16,16 @@ import {
   Text,
   Title,
 } from './styles';
-import AvatarIcon from '../../assets/avatar.png';
+import AvatarIcon from '../../../assets/avatar.png';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {useEffect, useState} from 'react';
-import {RegisterPointRequest} from '../../services/cults/request/registerPoints.request';
-import {registerPoints} from '../../services/cults/cult.service';
-import {useAuth} from '../../hooks/auth';
-import {logger} from '../../utils/logger.service';
-import { IAlert } from '../../interfaces/alert/alert.interface';
+import { useAuth } from '../../../hooks/auth';
+import { RegisterPointRequest } from '../../../services/cults/request/registerPoints.request';
+import { IAlert } from '../../../interfaces/alert/alert.interface';
+import { registerPoints } from '../../../services/cults/cult.service';
+import { logger } from '../../../utils/logger.service';
+import { calculateAge } from '../../../utils/date.service';
+import { CheckScreenNavigationProp, CultsScreenNavigationProp } from '../../../interfaces/navigation/types';
 
 export const CheckScreen = () => {
   const context = useAuth();

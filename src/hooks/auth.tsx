@@ -59,8 +59,9 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     setUser(user);
   }
 
-  function Logout() {
+  async function Logout() {
     setUser(null);
+    await AsyncStorage.setItem('@CheckInKids:user', '');
   }
 
   return (

@@ -3,7 +3,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ChildrenDTO} from '../children/children.interface';
 
 export type propsNavigationStack = {
-  Children: undefined;
+  Childrens: undefined;
   Cults: undefined;
   Check: {
     children: ChildrenDTO;
@@ -15,8 +15,9 @@ export type propsNavigationStack = {
 };
 
 export type propsNavigationDrawer = {
-  Children: undefined;
+  Childrens: undefined;
   CultsStack: undefined;
+  Login: undefined;
 };
 
 export type propsStack = NativeStackNavigationProp<propsNavigationStack>;

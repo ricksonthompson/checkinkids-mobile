@@ -5,8 +5,8 @@ interface InputProps {
 }
 
 export const TextInput = styled.TextInput<InputProps>`
-  font-family: 'DINNextW1G-Bold';
-  font-size: 20px;
+  font-family: 'DINNextW1G-Regular';
+  font-size: 18px;
   padding: 12px;
   color: ${p => (p.error ? '#c81717' : '#4b5c6b')};
   border-color: ${p => (p.error ? '#c81717' : '#4b5c6b')};
